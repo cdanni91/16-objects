@@ -137,9 +137,67 @@ por cualquiera de los objetos que haya usado ese constructor para ser creado,
 en este caso por el objeto pesoArgy */
 pesoArgy.sayHola();
 
-/* Al igual que antes, si queremos acceder a Moneda.prototype desde el objeto pesoArgy
+/* (3) Al igual que antes, si queremos acceder a Moneda.prototype desde el objeto pesoArgy
 hacemos lo siguiente */
 console.log(Object.getPrototypeOf(pesoArgy) === Moneda.prototype);
 
+/*(4) Pero ahora podemos ver que el constructor Moneda
+ tambien hereda de otro prototype a diferencia del primer ejemplo, del constructor original Object */
+console.log(Object.getPrototypeOf(Moneda.prototype) === Object.prototype);
 
 
+/*
+
+Caso 1
+
+
+Object {
+
+  protoype : root Object prototype;
+
+}
+
+
+      myObj = new Object()    {
+      myObj = {}
+                                            Para acceder a Object.protoype desde myObj
+          this.name = name;                 -> Object.getPrototypeOf(myObj) ->
+          this.age = age;                   es lo mismo Object.getPrototypeOf(myObj) === Object.prototype
+          ... etc
+
+      }
+
+
+Caso 2 
+
+
+Object {
+
+  protoype : root Object prototype;
+
+}
+          Moneda (nombre, material) {                           Para acceder a Object.prototype desde el constructor moneda -> 
+                                                                Object.getPrototypeOf(Moneda.prototype) ->
+            this.nombre = nombre;                               Object.getPrototypeOf(Moneda.prototype) === Object.protoype
+            this.material = material;
+            prototype = { sayHola: [Function (anonymous)] }
+          
+          
+          }
+
+
+              pesoArgy = {
+                                                        Para acceder a Moneda.prototype desde el objeto pesoArgy ->
+                nombre = Peso;                          Object.getPrototypeOf(pesoArgy) -> es lo mismo que ->
+                material = Oro;                         Object.getPrototypeOf(pesoArgy) === Moneda.prototype
+                                                        Tiene acceso a la funcion sayHola ya que la hereda de su prototipo
+              }
+
+
+
+
+
+
+
+
+ */
