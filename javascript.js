@@ -1,4 +1,4 @@
-const myLabrary = [];
+const myLibrary = [];
 
 
 function Book(title, author, pages, hasRead) {
@@ -26,15 +26,34 @@ function addBookToLibrary(title, author, pages, hasRead) {
 
     const newBook = new Book (title,author,pages,hasRead);
     
-    myLabrary.push(newBook);
+    myLibrary.push(newBook);
 
     
 
 }
+
+
+
+
 
 addBookToLibrary('Hobbit','Jrr','124',true);
 addBookToLibrary('Hobbit2','Jrr','124',true);
 addBookToLibrary('Hobbit3','Jrr','124',true);
 addBookToLibrary('Hobbit4','Jrr','124',true);
 
-console.log(myLabrary)
+function createBookCard (myLibrary) { 
+   
+
+    const bookShelf = document.querySelector("main");
+
+    
+    myLibrary.forEach(book => {
+        const bookCard = document.createElement("div");
+        bookCard.textContent = book.title;
+        bookShelf.appendChild(bookCard);
+    })
+}
+
+const createButton = document.querySelector("button");
+
+createButton.addEventListener("click", () => createBookCard(myLibrary));
