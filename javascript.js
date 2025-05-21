@@ -161,7 +161,9 @@ function createBookForm () {
         const categoryInput = document.createElement("input");
         categoryInput.setAttribute("type", "text");
         categoryInput.setAttribute("id", "book_"+`${category}`);
-        categoryInput.setAttribute("name", "book"+`${category}`);
+        categoryInput.setAttribute("name", "book"+`${category}`); 
+
+        
         bookFormContainer.appendChild(categoryInput);
     });
 
@@ -197,16 +199,37 @@ function createBookForm () {
         const pages = document.querySelector("#book_pages").value;
         const hasRead = hasReadSelect.value;
 
+        // saves all the data into an array
+        const bookValues = [];
+        bookValues.push(title,author,pages,hasRead);
+
+        if (checkIfNotBlank(bookValues)) {
+            return;
+        }
+
+
         addBookToLibrary(title, author, pages, hasRead);
 
         // Limpiar tabla y volver a generar
         const bookShelf = document.querySelector("#library tbody");
         bookShelf.innerHTML = "";
         createBookCard(myLibrary);
+
     });
 
     bookFormContainer.appendChild(addToLibrary);
 
 }
 
+/* function to avoid blank entries */
+function checkIfNotBlank (bookValues) {
 
+    let isBlank = false;
+
+    bookValues.forEach(value => {
+        value === "" ? isBlank = true : "";
+    })
+
+    return isBlank;
+
+}
