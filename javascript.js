@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     createBookCard(myLibrary);
 })
 
-
+/* sample data */
 addBookToLibrary('The Hobbit','Tolkien','124',"yes");
 addBookToLibrary('LOTR: Two towers','Tolkien','320',"no");
 addBookToLibrary('LOTR: Return of the king','Tolkien','421',"yes");
@@ -37,8 +37,6 @@ function Book(title, author, pages, hasRead) {
     
   }
   
-
-
 
 function addBookToLibrary(title, author, pages, hasRead) {
 // take params, create a book then store it in the array
@@ -140,6 +138,11 @@ function createBookCard (myLibrary) {
 
 
 function createBookForm () {
+
+   // avoid more than one form
+    if (document.querySelector(".bookFormContainer")) {
+        return; // does nothing
+    }
 
     const bookFormCategories = ["title", "author", "pages"];
     const mainElement = document.querySelector("main");
